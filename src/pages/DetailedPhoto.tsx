@@ -6,7 +6,7 @@ function DetailedPhoto() {
   return (
     <div>
       <h1>Photo Title</h1>
-      <Link to={`/${PATH.GALLERY.ROOT}`}>Back to Gallery</Link>
+      <Link to={PATH.GALLERY.ROOT}>Back to Gallery</Link>
       <p>This is the detailed photo page for photo {photoId}.</p>
       <img src="https://via.placeholder.com/600" alt="Photo Title" />
     </div>
