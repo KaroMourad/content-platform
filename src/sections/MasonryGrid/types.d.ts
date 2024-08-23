@@ -68,6 +68,7 @@ interface User {
 
 interface TopicSubmission {
   status: string;
+  approved_on?: string | null;
 }
 
 interface TopicSubmissions {
@@ -110,6 +111,12 @@ interface AlternativeSlugs {
   [languageCode: string]: string;
 }
 
+interface BreadcrumbItem {
+  slug: string;
+  title: string;
+  index: number;
+  type: string;
+}
 interface ImageData {
   id: string;
   slug: string;
@@ -123,7 +130,7 @@ interface ImageData {
   blur_hash: string;
   description: string | null;
   alt_description: string | null;
-  breadcrumbs: string[];
+  breadcrumbs: BreadcrumbItem[];
   urls: Urls;
   links: Links;
   likes: number;
