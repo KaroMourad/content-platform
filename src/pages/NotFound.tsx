@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PATH } from "../routes";
 
-function NotFound() {
+const NotFound: React.FC = () => {
   return (
     <div>
       <h1>Oops!</h1>
@@ -9,6 +9,6 @@ function NotFound() {
       <Link to={PATH.HOME}>Back to Home page</Link>
     </div>
   );
-}
+};
 
 export default NotFound;

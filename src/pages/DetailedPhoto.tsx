@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { PATH } from "../routes";
 
-function DetailedPhoto() {
+const DetailedPhoto: React.FC = () => {
   const { photoId } = useParams();
   return (
     <div>
@@ -11,6 +11,6 @@ function DetailedPhoto() {
       <img src="https://via.placeholder.com/600" alt="Photo Title" />
     </div>
   );
-}
+};
 
 export default DetailedPhoto;

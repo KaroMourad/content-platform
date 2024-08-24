@@ -4,11 +4,11 @@ import { createUseStyles } from "react-jss";
 
 import { ImageProps, ImageUseStylesArgs } from "./types";
 
-function Image(props: ImageProps) {
-  const { src, alt, blurhash, width, height, loading } = props;
+const Image: React.FC<ImageProps> = (props) => {
+  const { src, alt, blurhash, loading, style } = props;
   const [loaded, setLoaded] = useState(false);
 
-  const classes = useStyles({ loaded, width, height });
+  const classes = useStyles({ loaded, style });
   return (
     <div className={classes.imageContainer}>
       <ImagePlaceholder
@@ -23,21 +23,29 @@ function Image(props: ImageProps) {
         onLoad={() => setLoaded(true)}
         className={classes.image}
         loading={loading}
+        width="100%"
+        height="100%"
       />
     </div>
   );
-}
+};
 
 export default memo(Image);
 
 const useStyles = createUseStyles({
-  imageContainer: ({ width, height }: ImageUseStylesArgs) => ({
+  imageContainer: ({ style }: ImageUseStylesArgs) => ({
+    height: "100%",
+    width: "100%",
     maxWidth: "100%",
-    display: 'inline-flex',
-    aspectRatio: typeof width === 'number' && typeof height === 'number' ? width / height : "auto",
+    maxHeight: "100%",
+    display: "inline-flex",
+    overflow: "hidden",
+    ...style,
   }),
   image: ({ loaded }: ImageUseStylesArgs) => ({
     maxWidth: "100%",
+    height: "100%",
+    width: loaded ? "100%" : "0",
     visibility: loaded ? "visible" : "hidden",
   }),
 });

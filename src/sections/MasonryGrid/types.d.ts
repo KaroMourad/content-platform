@@ -1,7 +1,21 @@
-export interface MasnoryGridProps {
-  data: ImageData[];
+export interface VirtualizedMasonryGridProps {
+  items: GridItem[];
+  gap?: number;
+  buffer?: number;
+  breakpoints?: GridBreakpoint[];
+  gridItemClass?: string;
 }
 
+export interface GridBreakpoint {
+  width: number;
+  columns: number;
+}
+
+
+
+
+
+// @TODO: separate file for ImageData type
 interface Urls {
   raw: string;
   full: string;
@@ -110,7 +124,6 @@ interface Sponsor {
 interface AlternativeSlugs {
   [languageCode: string]: string;
 }
-
 interface BreadcrumbItem {
   slug: string;
   title: string;

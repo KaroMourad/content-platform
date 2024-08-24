@@ -18,10 +18,10 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
   blurhash?: string;
+  style?: React.CSSProperties;
 }
 
 export interface ImageUseStylesArgs {
-  width?: number | string;
-  height?: number | string;
   loaded?: boolean;
+  style?: React.CSSProperties;
 }
