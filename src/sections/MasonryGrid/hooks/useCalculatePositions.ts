@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from "react";
-import { Position, GridItem } from "../Grid/types";
-import debounce from "../../../utils/debounce";
+import { throttle } from "lodash-es";
+
+import { Position, GridItemType } from "../Grid/types";
 
 const useCalculatePositions = (
   containerRef: React.RefObject<HTMLDivElement>,
   gridRef: React.RefObject<HTMLDivElement>,
-  items: GridItem[],
+  items: GridItemType[],
   columnWidth: number,
   columnCount: number,
   gap: number
@@ -36,19 +37,16 @@ const useCalculatePositions = (
     gridRef.current.style.height = `${Math.max(...columnHeights)}px`;
   }, [items, columnWidth, gap, containerRef, gridRef]);
 
-  const debouncedCalculatePositions = useCallback(
-    debounce(calculatePositions, 20),
-    [calculatePositions]
-  );
-
   useEffect(() => {
-    debouncedCalculatePositions();
-    window.addEventListener("resize", debouncedCalculatePositions);
+    const throttledCalPositions = throttle(calculatePositions, 30);
+
+    throttledCalPositions();
+    window.addEventListener("resize", throttledCalPositions);
 
     return () => {
-      window.removeEventListener("resize", debouncedCalculatePositions);
+      window.removeEventListener("resize", throttledCalPositions);
     };
-  }, [debouncedCalculatePositions]);
+  }, [calculatePositions]);
 
   return positions;
 };

@@ -2,7 +2,7 @@ import { ImgHTMLAttributes } from "react";
 
 export interface ImagePlaceholderProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  hash?: string;
+  hash: string;
   /** CSS height, default: 128 */
   height?: number | string | "auto";
   /** CSS width, default: 128 */
@@ -11,7 +11,6 @@ export interface ImagePlaceholderProps
   resolutionX?: number;
   resolutionY?: number;
   style?: React.CSSProperties;
-  loaded?: boolean;
 }
 
 export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -19,6 +18,7 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   alt: string;
   blurhash?: string;
   style?: React.CSSProperties;
+  imageRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface ImageUseStylesArgs {

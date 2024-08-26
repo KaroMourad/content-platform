@@ -1,12 +1,17 @@
 import { createUseStyles } from "react-jss";
+import { LoaderProps } from "./types";
+import classNames from "classnames";
 
-const Loader = () => {
+const Loader = ({ withContainer = true, wrapperClassName, className }: LoaderProps) => {
   const classes = useStyles();
-  return (
-    <div className={classes.wrapper}>
-      <div className={classes.loader} />
-    </div>
-  );
+  if (withContainer) {
+    return (
+      <div className={classNames(classes.wrapper, wrapperClassName)}>
+        <div className={classNames(classes.loader, className)} />
+      </div>
+    );
+  }
+  return <div className={classNames(classes.loader, className)} />;
 };
 
 export default Loader;

@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.52.1",
+    "@tanstack/react-query-devtools": "^5.52.1",
     "blurhash": "^2.0.5",
     "classnames": "^2.5.1",
+    "lodash-es": "^4.17.21",
     "react": "^18.3.1",
     "react-blurhash": "^0.3.0",
     "react-dom": "^18.3.1",
@@ -20,6 +23,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.5.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

@@ -4,12 +4,12 @@ export interface GridProps {
 }
 
 export interface GridItemProps {
-  item: GridItem;
+  item: GridItemType;
   position: Position;
   className?: string;
 }
 
-export interface GridItem {
+export interface GridItemType {
   value: React.ReactNode;
   key: string;
   aspectRatio: number;

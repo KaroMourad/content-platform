@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
     color: "black",
     overflow: "hidden",
     willChange: "transform",
-    transition: "transform 0.1s",
+    transition: "transform 0.12s ease-out",
     ...style,
   }),
 });

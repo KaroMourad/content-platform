@@ -3,7 +3,7 @@ import { lazy } from "react";
 import { PATH } from "./routes";
 import Layout from "./layouts/Layout";
 
-const Gallery = lazy(() => import("./pages/Gallery"));
+const Gallery = lazy(() => import("./pages/Gallery/Gallery"));
 const DetailedPhoto = lazy(() => import("./pages/DetailedPhoto"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 

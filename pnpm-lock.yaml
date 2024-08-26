@@ -8,12 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.52.1
+        version: 5.52.1(react@18.3.1)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.52.1
+        version: 5.52.1(@tanstack/react-query@5.52.1(react@18.3.1))(react@18.3.1)
       blurhash:
         specifier: ^2.0.5
         version: 2.0.5
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -33,6 +42,12 @@ importers:
       '@eslint/js':
         specifier: ^9.9.0
         version: 9.9.0
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      '@types/node':
+        specifier: ^22.5.0
+        version: 22.5.0
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.4
@@ -41,7 +56,7 @@ importers:
         version: 18.3.0
       '@vitejs/plugin-react':
         specifier: ^4.3.1
-        version: 4.3.1(vite@5.4.2)
+        version: 4.3.1(vite@5.4.2(@types/node@22.5.0))
       eslint:
         specifier: ^9.9.0
         version: 9.9.0
@@ -62,7 +77,7 @@ importers:
         version: 8.2.0(eslint@9.9.0)(typescript@5.5.4)
       vite:
         specifier: ^5.4.1
-        version: 5.4.2
+        version: 5.4.2(@types/node@22.5.0)
 
 packages:
 
@@ -453,6 +468,23 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@tanstack/query-core@5.52.0':
+    resolution: {integrity: sha512-U1DOEgltjUwalN6uWYTewSnA14b+tE7lSylOiASKCAO61ENJeCq9VVD/TXHA6O5u9+6v5+UgGYBSccTKDoyMqw==}
+
+  '@tanstack/query-devtools@5.51.16':
+    resolution: {integrity: sha512-ajwuq4WnkNCMj/Hy3KR8d3RtZ6PSKc1dD2vs2T408MdjgKzQ3klVoL6zDgVO7X+5jlb5zfgcO3thh4ojPhfIaw==}
+
+  '@tanstack/react-query-devtools@5.52.1':
+    resolution: {integrity: sha512-6KwSm9vcIIK26osQJtT52Gyccz/DyHPT216B7kt4ihg22G2rtGZ7sCXYQO25XEHyVwVingwHdZ7auj+ydgg4Zg==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.52.1
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.52.1':
+    resolution: {integrity: sha512-soyn4dNIUZ8US8NaPVXv06gkZFHaZnPfKWPDjRJjFRW3Y7WZ0jx72eT6zhw3VQlkMPysmXye8l35ewPHspKgbQ==}
+    peerDependencies:
+      react: ^18 || ^19
+
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -467,6 +499,15 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/lodash-es@4.17.12':
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+
+  '@types/lodash@4.17.7':
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
+
+  '@types/node@22.5.0':
+    resolution: {integrity: sha512-DkFrJOe+rfdHTqqMg0bSNlGlQ85hSoh2TPzZyhHsXnMtligRWpxUySiyw8FY14ITt24HVCiQPWxS3KO/QlGmWg==}
 
   '@types/prop-types@15.7.12':
     resolution: {integrity: sha512-5zvhXYtRNRluoE/jAp4GVsSduVUzNWKkOZrCDBWYtE7biZywwdC2AcEzg+cSMLFRfVgeAFqpfNabiPjxFddV1Q==}
@@ -930,6 +971,9 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
@@ -1182,6 +1226,9 @@ packages:
     resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  undici-types@6.19.8:
+    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
   update-browserslist-db@1.1.0:
     resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==}
@@ -1565,6 +1612,21 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.21.0':
     optional: true
 
+  '@tanstack/query-core@5.52.0': {}
+
+  '@tanstack/query-devtools@5.51.16': {}
+
+  '@tanstack/react-query-devtools@5.52.1(@tanstack/react-query@5.52.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-devtools': 5.51.16
+      '@tanstack/react-query': 5.52.1(react@18.3.1)
+      react: 18.3.1
+
+  '@tanstack/react-query@5.52.1(react@18.3.1)':
+    dependencies:
+      '@tanstack/query-core': 5.52.0
+      react: 18.3.1
+
   '@types/babel__core@7.20.5':
     dependencies:
       '@babel/parser': 7.25.4
@@ -1587,6 +1649,16 @@ snapshots:
       '@babel/types': 7.25.4
 
   '@types/estree@1.0.5': {}
+
+  '@types/lodash-es@4.17.12':
+    dependencies:
+      '@types/lodash': 4.17.7
+
+  '@types/lodash@4.17.7': {}
+
+  '@types/node@22.5.0':
+    dependencies:
+      undici-types: 6.19.8
 
   '@types/prop-types@15.7.12': {}
 
@@ -1680,14 +1752,14 @@ snapshots:
       '@typescript-eslint/types': 8.2.0
       eslint-visitor-keys: 3.4.3
 
-  '@vitejs/plugin-react@4.3.1(vite@5.4.2)':
+  '@vitejs/plugin-react@4.3.1(vite@5.4.2(@types/node@22.5.0))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
       '@babel/plugin-transform-react-jsx-source': 7.24.7(@babel/core@7.25.2)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.2
+      vite: 5.4.2(@types/node@22.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -2134,6 +2206,8 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash-es@4.17.21: {}
+
   lodash.merge@4.6.2: {}
 
   loose-envify@1.4.0:
@@ -2373,6 +2447,8 @@ snapshots:
 
   typescript@5.5.4: {}
 
+  undici-types@6.19.8: {}
+
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:
       browserslist: 4.23.3
@@ -2383,12 +2459,13 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite@5.4.2:
+  vite@5.4.2(@types/node@22.5.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.41
       rollup: 4.21.0
     optionalDependencies:
+      '@types/node': 22.5.0
       fsevents: 2.3.3
 
   which@2.0.2:

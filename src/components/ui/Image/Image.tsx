@@ -5,18 +5,15 @@ import { createUseStyles } from "react-jss";
 import { ImageProps, ImageUseStylesArgs } from "./types";
 
 const Image: React.FC<ImageProps> = (props) => {
-  const { src, alt, blurhash, loading, style } = props;
+  const { src, alt, blurhash, loading, style, imageRef } = props;
   const [loaded, setLoaded] = useState(false);
 
   const classes = useStyles({ loaded, style });
   return (
-    <div className={classes.imageContainer}>
-      <ImagePlaceholder
-        hash={blurhash}
-        width="100%"
-        height="100%"
-        loaded={loaded}
-      />
+    <div className={classes.imageContainer} ref={imageRef}>
+      {!loaded && blurhash && (
+        <ImagePlaceholder hash={blurhash} width="100%" height="100%" />
+      )}
       <img
         src={src}
         alt={alt}
