@@ -5,14 +5,19 @@ import { GridContainer } from "./GridContainer";
 import { Grid, GridItem } from "./Grid";
 import { useColumnSettings, useCalculatePositions } from "./hooks";
 import { VirtualizedMasonryGridProps } from "./types";
-import { BREAKPOINTS, BUFFER, GAP } from "./configs";
+import {
+  BREAKPOINTS,
+  VIRTUALIZATION_BUFFER,
+  INFINTE_SCROLL_BUFFER,
+  GAP,
+} from "./configs";
 import { GridItemType } from "./Grid/types";
 import { computeScrollMetrics, useHandleScroll } from "../../utils";
 
 const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
   items,
   gap = GAP,
-  buffer = BUFFER,
+  virtualizationBuffer = VIRTUALIZATION_BUFFER,
   breakpoints = BREAKPOINTS,
   gridItemClass,
   infiniteScrollProps,
@@ -42,7 +47,7 @@ const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
   const getVisibleItems = useCallback(() => {
     const { scrollTop, clientHeight, bufferHeight } = computeScrollMetrics(
       containerElRef,
-      buffer
+      virtualizationBuffer
     );
     const viewportBottomWithBuffer = scrollTop + clientHeight + bufferHeight;
 
@@ -54,26 +59,27 @@ const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
         pos.y < viewportBottomWithBuffer
       );
     });
-  }, [containerElRef, items, positions, buffer]);
+  }, [containerElRef, items, positions, virtualizationBuffer]);
 
   const fetchMoreItems = useCallback(() => {
     if (!infiniteScrollProps) return;
+    const buffer = infiniteScrollProps.buffer || INFINTE_SCROLL_BUFFER;
 
     const { scrollTop, clientHeight, bufferHeight, scrollHeight } =
-      computeScrollMetrics(containerElRef, 0);
+      computeScrollMetrics(containerElRef, buffer);
     const viewportBottomWithBuffer = scrollTop + clientHeight + bufferHeight;
     const isCloseToBottom =
       scrollHeight - scrollTop <= viewportBottomWithBuffer;
 
     if (
-      infiniteScrollProps.hasMore &&
+      !infiniteScrollProps.hasError &&
       !infiniteScrollProps.isFetching &&
-      isCloseToBottom && 
+      isCloseToBottom &&
       typeof infiniteScrollProps.next === "function"
     ) {
       infiniteScrollProps.next();
     }
-  }, [infiniteScrollProps, buffer]);
+  }, [infiniteScrollProps]);
 
   const updateVisibleItems = useCallback(() => {
     const items = getVisibleItems();

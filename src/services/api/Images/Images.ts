@@ -1,4 +1,5 @@
 import { API } from "..";
+import { ResponseData } from "../types";
 import { UnsplashImageData } from "./types";
 
 const API_CLIENT_ID = import.meta.env.VITE_API_CLIENT_ID;
@@ -8,7 +9,7 @@ const SEARCH_PHOTOS = "/search/photos";
 
 const UNSPLASH_API_AUTHORIZATION = `Client-ID ${API_CLIENT_ID}`;
 const UNSPLASH_API_HEADERS = {
-  Authorization: UNSPLASH_API_AUTHORIZATION
+  Authorization: UNSPLASH_API_AUTHORIZATION,
 };
 
 /**
@@ -17,10 +18,13 @@ const UNSPLASH_API_HEADERS = {
  * @param {number} perPage - Number of images per page
  * @returns {Promise} - Resolves to an array of images
  */
-export const fetchImages = async(page = 1, perPage = 10) => {
+export const fetchImages = async (
+  page = 1,
+  perPage = 10
+): Promise<ResponseData<UnsplashImageData[]>> => {
   return await API.get<UnsplashImageData[]>(PHOTOS, {
     params: { page: `${page}`, per_page: `${perPage}` },
-    headers: UNSPLASH_API_HEADERS
+    headers: UNSPLASH_API_HEADERS,
   });
 };
 
@@ -30,11 +34,13 @@ export const fetchImages = async(page = 1, perPage = 10) => {
  * @returns {Promise} - Resolves to an image object
  */
 
-export const fetchImage = async (id: string) => {
+export const fetchImage = async (
+  id: string
+): Promise<ResponseData<UnsplashImageData[]>> => {
   try {
     const data = await API.get<UnsplashImageData[]>(PHOTOS, {
       params: { id: `${id}` },
-      headers: UNSPLASH_API_HEADERS
+      headers: UNSPLASH_API_HEADERS,
     });
     return data;
   } catch (error) {
@@ -54,11 +60,11 @@ export const searchImages = async (
   query: string,
   page: number = 1,
   perPage: number = 10
-): Promise<UnsplashImageData[]> => {
+): Promise<ResponseData<UnsplashImageData[]>> => {
   try {
     const data = await API.get<UnsplashImageData[]>(SEARCH_PHOTOS, {
       params: { query, page: `${page}`, per_page: `${perPage}` },
-      headers: UNSPLASH_API_HEADERS
+      headers: UNSPLASH_API_HEADERS,
     });
     return data;
 

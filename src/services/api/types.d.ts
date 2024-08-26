@@ -3,7 +3,7 @@ export type Params =
   | Record<string, string>
   | URLSearchParams
   | string[][];
-  
+
 export interface FetcherConfig {
   data?: D;
   headers?: Record<string, string>;
@@ -41,4 +41,11 @@ export interface DELETE_CONFIGS<D> {
 
 export interface QueryProviderProps {
   children: ReactNode;
+}
+
+export interface ResponseData<T = unknown> {
+  data: T;
+  totalItems?: number;
+  perPage?: number;
+  lastPageNumber?: number;
 }

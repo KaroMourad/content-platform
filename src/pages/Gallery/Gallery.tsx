@@ -1,35 +1,32 @@
-import { createUseStyles } from "react-jss";
-import { useInfiniteQuery } from "@tanstack/react-query";
-
-import { VirtualizedMasonryGrid } from "../../sections/MasonryGrid";
-
-import { Image, Loader } from "../../components/ui";
 import { useMemo } from "react";
-import { fetchImages } from "../../services/api/Images/Images";
+import { VirtualizedMasonryGrid } from "../../sections/MasonryGrid";
+import { Image, Loader } from "../../components/ui";
 import { UnsplashImageData } from "../../services/api/Images/types";
-import { QUERY_KEYS } from "../../config/queryKeys";
+import { ErrorBoundary, ErrorFallback } from "../../components";
+import useStyles from "./GalleryStyles";
+import useFetchData from "./useFetchData";
 
 const Gallery: React.FC = () => {
-  const IMAGES_PER_PAGE = 10;
-
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: [QUERY_KEYS.GET_PHOTOS],
-    queryFn: ({ pageParam }) => fetchImages(pageParam, IMAGES_PER_PAGE),
-    initialPageParam: 1,
-    initialData: { pages: [], pageParams: [] },
-    getNextPageParam: (lastPage, pages) => {
-      const hasMore = lastPage.length === IMAGES_PER_PAGE;
-      return hasMore ? pages.length + 1 : undefined;
-    },
-  });
+  const {
+    data,
+    isFetching,
+    isFetchingNextPage,
+    hasFetchingError,
+    infiniteScrollProps,
+    handleRetry,
+    handleClose,
+  } = useFetchData();
 
   const processedImages = useMemo(() => {
-    const flattenImages: UnsplashImageData[] = (data?.pages || []).flat();
-    
-    return flattenImages.map((image, i) => {
-      return {
-        key: `${image.id}-${i}`,
-        value: (
+    const flattenImages = data.pages.reduce(
+      (acc, page) => [...acc, ...page.data],
+      [] as UnsplashImageData[]
+    );
+
+    return flattenImages.map((image, i) => ({
+      key: `${image.id}-${i}`,
+      value: (
+        <div style={{ height: "100%" }}>
           <Image
             src={image.urls.small}
             alt={image.alt_description || image.slug}
@@ -37,51 +34,39 @@ const Gallery: React.FC = () => {
             loading="lazy"
             style={{ borderRadius: 4 }}
           />
-        ),
-        aspectRatio: Number((image.width / image.height).toFixed(2)),
-      };
-    });
+        </div>
+      ),
+      aspectRatio: Number((image.width / image.height).toFixed(2)),
+    }));
   }, [data]);
-
-  const infiniteScrollProps = useMemo(
-    () => ({
-      hasMore: data.pages.at(-1)?.length === IMAGES_PER_PAGE,
-      next: fetchNextPage,
-      isFetching: isFetchingNextPage,
-    }),
-    [data.pages, isFetchingNextPage, fetchNextPage]
-  );
 
   const classes = useStyles();
   return (
-    <>
+    <ErrorBoundary>
       <h1>Gallery</h1>
-      <VirtualizedMasonryGrid
-        items={processedImages}
-        gridItemClass={classes.gridItemClass}
-        infiniteScrollProps={infiniteScrollProps}
-      />
+      {hasFetchingError && (
+        <ErrorFallback
+          errorMessage="Failed to load gallery. Please try again."
+          onRetry={handleRetry}
+          onClose={handleClose}
+        />
+      )}
+      {isFetching && processedImages.length === 0 ? (
+        <Loader />
+      ) : (
+        <VirtualizedMasonryGrid
+          items={processedImages}
+          gridItemClass={classes.gridItemClass}
+          infiniteScrollProps={infiniteScrollProps}
+        />
+      )}
       {isFetchingNextPage && (
         <Loader wrapperClassName={classes.loaderWrapper} />
       )}
-    </>
+    </ErrorBoundary>
   );
 };
 
-export default Gallery;
+Gallery.displayName = "Gallery";
 
-const useStyles = createUseStyles({
-  gridItemClass: {
-    padding: 4,
-    borderRadius: 8,
-  },
-  loaderWrapper: {
-    position: "fixed",
-    bottom: 0,
-    height: 100,
-    backgroundColor: "transparent",
-    width: "100%",
-    backdropFilter: "blur(2px)",
-    boxShadow: "inset 0 -80px 20px 0px rgba(0, 0, 0, 0.4)",
-  },
-});
+export default Gallery;

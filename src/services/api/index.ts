@@ -6,16 +6,17 @@ import {
   PATCH_CONFIGS,
   POST_CONFIGS,
   PUT_CONFIGS,
+  ResponseData,
 } from "./types";
 import { getRequestHeaders, handleResponse, getApiRoot } from "./utils";
 
 const API_ROOT = getApiRoot();
 
-const fetcher = async (
+const fetcher = async <TData = unknown>(
   endpoint: string,
   method: `${API_METHODS}`,
   { data, headers, params, apiRoot }: FetcherConfig = {}
-): Promise<any> => {
+): Promise<ResponseData<TData>> => {
   try {
     const requestHeaders = getRequestHeaders(headers);
     const config: RequestInit = {
@@ -39,32 +40,34 @@ const fetcher = async (
   }
 };
 
-const get = async <R = unknown>(
+const get = async <TData = unknown>(
   endpoint: string,
   { headers = {}, params, apiRoot }: GET_CONFIGS
-): Promise<R> =>
+): Promise<ResponseData<TData>> =>
   fetcher(endpoint, API_METHODS.GET, { headers, params, apiRoot });
 
-const post = async <D = Record<string, unknown>, R = unknown>(
+const post = async <TData = unknown>(
   endpoint: string,
-  { data, headers, params }: POST_CONFIGS<D>
-): Promise<R> =>
+  { data, headers, params }: POST_CONFIGS<TData>
+): Promise<ResponseData<TData>> =>
   fetcher(endpoint, API_METHODS.POST, { data, headers, params });
 
-const put = async <D = Record<string, unknown>, R = unknown>(
+const put = async <TData = unknown>(
   endpoint: string,
-  { data, headers, params }: PUT_CONFIGS<D>
-): Promise<R> =>
+  { data, headers, params }: PUT_CONFIGS<Partial<TData>>
+): Promise<ResponseData<TData>> =>
   fetcher(endpoint, API_METHODS.PUT, { data, headers, params });
 
-const patch = async <D = Record<string, unknown>, R = unknown>(
+const patch = async <TData = unknown>(
   endpoint: string,
-  { data, headers }: PATCH_CONFIGS<D>
-): Promise<R> => fetcher(endpoint, API_METHODS.PATCH, { data, headers });
+  { data, headers }: PATCH_CONFIGS<Partial<TData>>
+): Promise<ResponseData<TData>> =>
+  fetcher(endpoint, API_METHODS.PATCH, { data, headers });
 
-const remove = async <D = Record<string, unknown>, R = unknown>(
+const remove = async <TData = unknown>(
   endpoint: string,
-  { data, headers }: DELETE_CONFIGS<D>
-): Promise<R> => fetcher(endpoint, API_METHODS.DELETE, { data, headers });
+  { data, headers }: DELETE_CONFIGS<Partial<TData>>
+): Promise<ResponseData<TData>> =>
+  fetcher(endpoint, API_METHODS.DELETE, { data, headers });
 
 export const API = { get, post, put, patch, delete: remove };

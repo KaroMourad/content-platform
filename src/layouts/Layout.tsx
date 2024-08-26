@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { createUseStyles } from "react-jss";
+
+import useStyles from "./LayoutStyles";
 
 const Layout: React.FC = () => {
   const classes = useStyles();
@@ -11,13 +12,3 @@ const Layout: React.FC = () => {
 };
 
 export default Layout;
-
-const useStyles = createUseStyles({
-  layout: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "20px",
-    height: "100%",
-  },
-});

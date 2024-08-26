@@ -9,5 +9,9 @@ export const BREAKPOINTS = [
 
 export const GAP = 16;
 
+// Percentage of the viewport height to use as a buffer for pre-loading items
+export const VIRTUALIZATION_BUFFER = 10;
+
+
 // Percentage of the viewport height to use as a buffer for pre-fetching items
-export const BUFFER = 10;
+export const INFINTE_SCROLL_BUFFER = 5;

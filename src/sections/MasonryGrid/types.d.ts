@@ -5,13 +5,14 @@ import { GridItemType } from "./Grid/types";
 export interface VirtualizedMasonryGridProps {
   items: GridItemType[];
   gap?: number;
-  buffer?: number;
+  virtualizationBuffer?: number;
   breakpoints?: GridBreakpoint[];
   gridItemClass?: string;
   infiniteScrollProps?: {
-    hasMore: boolean;
     next: Function;
     isFetching: boolean;
+    buffer?: number;
+    hasError?: boolean;
   };
 }
 
