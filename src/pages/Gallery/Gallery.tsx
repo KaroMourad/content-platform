@@ -36,7 +36,8 @@ const Gallery: React.FC = () => {
           />
         </div>
       ),
-      aspectRatio: Number((image.width / image.height).toFixed(2)),
+      originalWidth: image.width,
+      originalHeight: image.height,
     }));
   }, [data]);
 

@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => {
   const VITE_API_BASE_URL = env.VITE_API_BASE_URL || "https://api.unsplash.com";
   return {
     plugins: [react(), svgr()],
+    build: {
+      minify: 'esbuild',
+    },
     server: {
       port,
     },

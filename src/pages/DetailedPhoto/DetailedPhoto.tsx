@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { PATH } from "../routes";
+import { PATH } from "../../routes";
 
 const DetailedPhoto: React.FC = () => {
   const { photoId } = useParams();

@@ -5,7 +5,7 @@ import Layout from "./layouts/Layout";
 import { Loader } from "./components/ui";
 
 const Gallery = lazy(() => import("./pages/Gallery/Gallery"));
-const DetailedPhoto = lazy(() => import("./pages/DetailedPhoto"));
+const DetailedPhoto = lazy(() => import("./pages/DetailedPhoto/DetailedPhoto"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {

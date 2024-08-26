@@ -12,7 +12,8 @@ export interface GridItemProps {
 export interface GridItemType {
   value: React.ReactNode;
   key: string;
-  aspectRatio: number;
+  originalWidth: number;
+  originalHeight: number;
 }
 
 export interface Position {

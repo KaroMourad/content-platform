@@ -14,15 +14,17 @@ const useCalculatePositions = (
   const [positions, setPositions] = useState<Record<string, Position>>({});
 
   const calculatePositions = useCallback(() => {
-    if (!containerRef.current || !gridRef.current) return;
+    if (!containerRef.current || !gridRef.current || !columnWidth) return;
     const columnHeights = new Array(columnCount).fill(0);
     const newPositions: Record<string, Position> = {};
 
     for (let item of items) {
-      const height = columnWidth / item.aspectRatio;
+      const height = Number(
+        (columnWidth / (item.originalWidth / item.originalHeight)).toFixed(2)
+      );
       const minColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-      const x = minColumnIndex * (columnWidth + gap);
-      const y = columnHeights[minColumnIndex];
+      const x = Number((minColumnIndex * (columnWidth + gap)).toFixed(2));
+      const y = Number(columnHeights[minColumnIndex].toFixed(2));
       columnHeights[minColumnIndex] += height + gap;
 
       newPositions[item.key] = {
