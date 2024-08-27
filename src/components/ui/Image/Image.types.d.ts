@@ -1,5 +1,13 @@
 import { ImgHTMLAttributes } from "react";
 
+export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+  src: string;
+  alt: string;
+  blurhash?: string;
+  style?: React.CSSProperties;
+  imageRef?: React.Ref<HTMLDivElement>;
+}
+
 export interface ImagePlaceholderProps
   extends React.HTMLAttributes<HTMLDivElement> {
   hash: string;
@@ -11,14 +19,6 @@ export interface ImagePlaceholderProps
   resolutionX?: number;
   resolutionY?: number;
   style?: React.CSSProperties;
-}
-
-export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-  src: string;
-  alt: string;
-  blurhash?: string;
-  style?: React.CSSProperties;
-  imageRef?: React.Ref<HTMLDivElement>;
 }
 
 export interface ImageUseStylesArgs {

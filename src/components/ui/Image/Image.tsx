@@ -1,8 +1,8 @@
 import { useState } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
-import useStyles from "./ImageStyles";
-import { ImageProps } from "./ImageTypes";
+import useStyles from "./Image.styles";
+import { ImageProps } from "./Image.types";
 import classNames from "classnames";
 
 const Image: React.FC<ImageProps> = (props) => {

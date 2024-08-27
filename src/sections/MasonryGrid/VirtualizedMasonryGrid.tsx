@@ -2,17 +2,18 @@ import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { isEqual } from "lodash-es";
 
 import { GridContainer } from "./GridContainer";
-import { Grid, GridItem } from "./Grid";
+import { Grid } from "./Grid";
 import { useColumnSettings, useCalculatePositions } from "./hooks";
-import { VirtualizedMasonryGridProps } from "./types";
+import { VirtualizedMasonryGridProps } from "./VirtualizedMasonryGrid.types";
 import {
   BREAKPOINTS,
   VIRTUALIZATION_BUFFER,
   INFINTE_SCROLL_BUFFER,
   GAP,
 } from "./configs";
-import { GridItemType } from "./Grid/types";
 import { computeScrollMetrics, useHandleScroll } from "../../utils";
+import { GridItemType } from "./GridItem/GridItem.types";
+import { GridItem } from "./GridItem";
 
 const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
   items,

@@ -5,7 +5,7 @@ import Layout from "./layouts/Layout";
 import { Loader } from "./components/ui";
 
 const Gallery = lazy(() => import("./pages/Gallery/Gallery"));
-const DetailedPhoto = lazy(() => import("./pages/DetailedPhoto/DetailedPhoto"));
+const Photo = lazy(() => import("./pages/Photo/Photo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path={PATH.GALLERY.ROOT} element={<Layout />}>
           <Route index element={<Gallery />} />
-          <Route path={PATH.GALLERY.PHOTO_ID} element={<DetailedPhoto />} />
+          <Route path={PATH.GALLERY.PHOTO_ID} element={<Photo />} />
           <Route path={PATH.ALL} element={<NotFound />} />
         </Route>
         <Route

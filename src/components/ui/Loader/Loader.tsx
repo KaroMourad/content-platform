@@ -1,7 +1,7 @@
 import classNames from "classnames";
 
-import useStyles from "./LoaderStyles";
-import { LoaderProps } from "./LoaderTypes";
+import useStyles from "./Loader.styles";
+import { LoaderProps } from "./Loader.types";
 
 const Loader = ({
   withContainer = true,

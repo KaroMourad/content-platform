@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { GridBreakpoint } from "../types";
+import { GridBreakpoint } from "../VirtualizedMasonryGrid.types";
 
 const useColumnSettings = (
   containerRef: React.RefObject<HTMLDivElement>,

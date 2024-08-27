@@ -1,1 +1,1 @@
-export const IMAGES_PER_PAGE = 10;
+export const PHOTOS_PER_PAGE = 10;

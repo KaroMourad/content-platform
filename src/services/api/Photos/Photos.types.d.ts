@@ -112,7 +112,7 @@ interface BreadcrumbItem {
   index: number;
   type: string;
 }
-export interface UnsplashImageData {
+export interface UnsplashPhotoData {
   id: string;
   slug: string;
   alternative_slugs: AlternativeSlugs;

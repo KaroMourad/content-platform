@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import useStyles from "./LayoutStyles";
+import useStyles from "./Layout.styles";
 
 const Layout: React.FC = () => {
   const classes = useStyles();

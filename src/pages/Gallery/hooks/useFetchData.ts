@@ -2,9 +2,9 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "../../config/queryKeys";
-import { fetchImages } from "../../services/api/Images/Images";
-import { IMAGES_PER_PAGE } from "./config";
+import { fetchPhotos } from "../../../services/api/Photos";
+import { QUERY_KEYS } from "../../../services/api/constants";
+import { PHOTOS_PER_PAGE } from "../config";
 
 const useFetchData = () => {
   const [hasFetchingError, setHasFetchingError] = useState(false);
@@ -18,8 +18,8 @@ const useFetchData = () => {
     isLoadingError,
     isFetchNextPageError,
   } = useInfiniteQuery({
-    queryKey: [QUERY_KEYS.GET_PHOTOS, IMAGES_PER_PAGE],
-    queryFn: ({ pageParam }) => fetchImages(pageParam, IMAGES_PER_PAGE),
+    queryKey: [QUERY_KEYS.GET_PHOTOS, PHOTOS_PER_PAGE],
+    queryFn: ({ pageParam }) => fetchPhotos(pageParam, PHOTOS_PER_PAGE),
     initialPageParam: 1,
     initialData: { pages: [], pageParams: [] },
     getNextPageParam: (lastPage, pages) => {

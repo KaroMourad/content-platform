@@ -1,10 +1,10 @@
 import React from "react";
 import classNames from "classnames";
-import useStyles from "./ErrorFallbackStyles";
-import { ErrorFallbackProps } from "./ErrorFallbackTypes";
+import useStyles from "./ErrorFallback.styles";
+import { ErrorFallbackProps } from "./ErrorFallback.types";
 import { Button } from "../ui";
 
-import CloseIcon from '../../assets/icons/close.svg?react';
+import CloseIcon from "../../assets/icons/close.svg?react";
 
 const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   errorMessage,
@@ -16,8 +16,14 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
 
   return (
     <div className={classNames(classes.container, className)}>
-      <Button className={classes.closeButton} variant="outline" size="sm" onClick={onClose} aria-label="Close">
-        <CloseIcon className={classes.closeIcon}/>
+      <Button
+        className={classes.closeButton}
+        variant="outline"
+        size="sm"
+        onClick={onClose}
+        aria-label="Close"
+      >
+        <CloseIcon className={classes.closeIcon} />
       </Button>
       <p className={classes.message}>{errorMessage}</p>
       <Button className={classes.button} onClick={onRetry}>

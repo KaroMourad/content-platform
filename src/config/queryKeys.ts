@@ -1,5 +1,0 @@
-export const QUERY_KEYS = {
-    GET_PHOTOS: "GET_PHOTOS",
-    GET_PHOTO: "GET_PHOTO",
-    SEARCH_PHOTOS: "SEARCH_PHOTOS",
-};

@@ -1,6 +1,6 @@
 import { Blurhash } from "react-blurhash";
 
-import { ImagePlaceholderProps } from "./ImageTypes";
+import { ImagePlaceholderProps } from "./Image.types";
 
 const ImagePlaceholder: React.FC<ImagePlaceholderProps> = (props) => {
   const { hash, ...restProps } = props;

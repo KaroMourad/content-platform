@@ -1,9 +1,9 @@
 // Button.tsx
 import React from "react";
 import { Slot } from "@radix-ui/react-slot";
-import useStyles from "./ButtonStyles";
+import useStyles from "./Button.styles";
 
-import { ButtonProps } from "./ButtonTypes";
+import { ButtonProps } from "./Button.types";
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (

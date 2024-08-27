@@ -1,13 +1,13 @@
 import React from "react";
-import { createUseStyles } from "react-jss";
-import { GridContainerProps } from "./types";
+import { GridContainerProps } from "./GridContainer.types";
+import useStyles from "./GridContainer.styles";
 
 const GridContainer: React.FC<GridContainerProps> = ({
   containerRef,
   children,
 }) => {
   const classes = useStyles();
-
+  
   return (
     <div ref={containerRef} className={classes.container}>
       {children}
@@ -16,14 +16,3 @@ const GridContainer: React.FC<GridContainerProps> = ({
 };
 
 export default GridContainer;
-
-const useStyles = createUseStyles({
-  container: {
-    position: "relative",
-    margin: "0 auto",
-    width: "100%",
-    height: "100%",
-    overflowY: "auto",
-    overflowX: "hidden",
-  },
-});

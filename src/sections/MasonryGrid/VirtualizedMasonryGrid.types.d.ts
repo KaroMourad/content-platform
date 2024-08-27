@@ -1,6 +1,6 @@
 import { RefCallback } from "react";
 import InfiniteScroll from "../../components/InfiniteScroll/InfiniteScroll";
-import { GridItemType } from "./Grid/types";
+import { GridItemType } from "./GridItem/GridItem.types";
 
 export interface VirtualizedMasonryGridProps {
   items: GridItemType[];

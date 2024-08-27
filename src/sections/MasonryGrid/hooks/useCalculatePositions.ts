@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { throttle } from "lodash-es";
-
-import { Position, GridItemType } from "../Grid/types";
+import { GridItemType, Position } from "../GridItem/GridItem.types";
 
 const useCalculatePositions = (
   containerRef: React.RefObject<HTMLDivElement>,

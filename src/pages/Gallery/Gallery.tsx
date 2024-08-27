@@ -1,10 +1,12 @@
 import { useMemo } from "react";
 import { VirtualizedMasonryGrid } from "../../sections/MasonryGrid";
 import { Image, Loader } from "../../components/ui";
-import { UnsplashImageData } from "../../services/api/Images/types";
+import { UnsplashPhotoData } from "../../services/api/Photos/Photos.types";
 import { ErrorBoundary, ErrorFallback } from "../../components";
-import useStyles from "./GalleryStyles";
-import useFetchData from "./useFetchData";
+import useStyles from "./Gallery.styles";
+import useFetchData from "./hooks/useFetchData";
+import { Link } from "react-router-dom";
+import { PATH } from "../../routes";
 
 const Gallery: React.FC = () => {
   const classes = useStyles();
@@ -19,30 +21,32 @@ const Gallery: React.FC = () => {
     handleClose,
   } = useFetchData();
 
-  const processedImages = useMemo(() => {
-    const flattenImages = data.pages.reduce(
+  const processedData = useMemo(() => {
+    const flattenData = data.pages.reduce(
       (acc, page) => [...acc, ...page.data],
-      [] as UnsplashImageData[]
+      [] as UnsplashPhotoData[]
     );
 
-    return flattenImages.map((image, i) => ({
-      key: `${image.id}-${i}`,
+    return flattenData.map((photo, i) => ({
+      key: `${photo.id}-${i}`,
       value: (
-        <div className={classes.imageContainer}>
-          <Image
-            src={image.urls.small}
-            alt={image.alt_description || image.slug}
-            blurhash={image.blur_hash}
-            loading="lazy"
-            className={classes.image}
-          />
-          <p className={classes.imageTitle}>
-            {image.alt_description || image.slug}
-          </p>
-        </div>
+        <Link to={`${PATH.GALLERY.ROOT}/${photo.id}`}>
+          <div className={classes.imageContainer}>
+            <Image
+              src={photo.urls.small}
+              alt={photo.alt_description || photo.slug}
+              blurhash={photo.blur_hash}
+              className={classes.image}
+              loading="lazy"
+            />
+            <p className={classes.imageTitle}>
+              {photo.alt_description || photo.slug}
+            </p>
+          </div>
+        </Link>
       ),
-      originalWidth: image.width,
-      originalHeight: image.height,
+      originalWidth: photo.width,
+      originalHeight: photo.height,
     }));
   }, [data]);
 
@@ -57,11 +61,11 @@ const Gallery: React.FC = () => {
             onClose={handleClose}
           />
         )}
-        {isFetching && processedImages.length === 0 ? (
+        {isFetching && processedData.length === 0 ? (
           <Loader />
         ) : (
           <VirtualizedMasonryGrid
-            items={processedImages}
+            items={processedData}
             gridItemClass={classes.gridItemClass}
             infiniteScrollProps={infiniteScrollProps}
           />

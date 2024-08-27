@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import classNames from "classnames";
 
-import { createUseStyles } from "react-jss";
-import { GridItemProps } from "./types";
+import useStyles from "./GridItem.styles";
+import { GridItemProps } from "./GridItem.types";
 
 const GridItem: React.FC<GridItemProps> = ({ item, position, className }) => {
   const classes = useStyles();
@@ -23,16 +23,3 @@ const GridItem: React.FC<GridItemProps> = ({ item, position, className }) => {
 };
 
 export default memo(GridItem);
-
-const useStyles = createUseStyles({
-  item: (style: React.CSSProperties) => ({
-    position: "absolute",
-    backgroundColor: "#fff",
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-    color: "black",
-    overflow: "hidden",
-    willChange: "transform",
-    transition: "transform 0.12s ease-out",
-    ...style,
-  }),
-});

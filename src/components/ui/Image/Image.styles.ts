@@ -1,5 +1,5 @@
 import { createUseStyles } from "react-jss";
-import { ImageUseStylesArgs } from "./ImageTypes";
+import { ImageUseStylesArgs } from "./Image.types";
 
 const useStyles = createUseStyles({
   container: ({ style }: ImageUseStylesArgs) => ({

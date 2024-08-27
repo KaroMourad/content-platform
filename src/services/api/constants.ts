@@ -1,0 +1,19 @@
+export enum API_METHODS {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
+}
+
+export const METHODS_WITH_BODY = new Set<`${API_METHODS}`>([
+  API_METHODS.POST,
+  API_METHODS.PUT,
+  API_METHODS.PATCH,
+]);
+
+export const QUERY_KEYS = {
+  GET_PHOTOS: "GET_PHOTOS",
+  GET_PHOTO: "GET_PHOTO",
+  SEARCH_PHOTOS: "SEARCH_PHOTOS",
+};

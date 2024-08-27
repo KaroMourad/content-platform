@@ -1,4 +1,4 @@
-import { API_METHODS, METHODS_WITH_BODY } from "./config";
+import { API_METHODS, METHODS_WITH_BODY } from "./constants";
 import {
   DELETE_CONFIGS,
   FetcherConfig,
@@ -7,7 +7,7 @@ import {
   POST_CONFIGS,
   PUT_CONFIGS,
   ResponseData,
-} from "./types";
+} from "./api.types";
 import { getRequestHeaders, handleResponse, getApiRoot } from "./utils";
 
 const API_ROOT = getApiRoot();
