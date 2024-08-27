@@ -5,7 +5,7 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "var(--spacing-md, 1rem)",
+    padding: "var(--spacing-lg, 1.5rem)",
     height: "100%",
   },
 });

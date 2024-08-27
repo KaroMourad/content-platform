@@ -34,6 +34,7 @@ const Gallery: React.FC = () => {
             alt={image.alt_description || image.slug}
             blurhash={image.blur_hash}
             loading="lazy"
+            className={classes.image}
           />
           <p className={classes.imageTitle}>
             {image.alt_description || image.slug}

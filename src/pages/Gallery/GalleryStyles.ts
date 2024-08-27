@@ -24,10 +24,25 @@ const useStyles = createUseStyles({
     position: "relative",
     overflow: "hidden",
     height: "100%",
-    "&:hover $imageTitle": {
-      opacity: 1,
-      display: "block",
+    cursor: "pointer",
+    "&:hover": {
+      boxShadow: "0 0 0 1em var(--primary-hover, #007bff)",
+      "& $imageTitle": {
+        opacity: 1,
+        display: "block",
+      },
+      "& img": {
+        transform: "scale(1.05)",
+      },
     },
+    "&:active": {
+      boxShadow: "0 0 0 1em var(--primary-active, #6c757d)",
+    },
+  },
+  image: {
+    '& img': {
+      transition: "transform 0.2s ease-in-out",
+    }
   },
   imageTitle: {
     transition: "opacity 0.2s ease-in-out",

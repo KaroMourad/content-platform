@@ -2,7 +2,7 @@ import { createUseStyles } from "react-jss";
 import { ImageUseStylesArgs } from "./ImageTypes";
 
 const useStyles = createUseStyles({
-  imageContainer: ({ style }: ImageUseStylesArgs) => ({
+  container: ({ style }: ImageUseStylesArgs) => ({
     height: "100%",
     width: "100%",
     maxWidth: "100%",

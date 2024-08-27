@@ -11,10 +11,7 @@ const Image: React.FC<ImageProps> = (props) => {
 
   const classes = useStyles({ loaded, style });
   return (
-    <div
-      className={classNames(classes.imageContainer, className)}
-      ref={imageRef}
-    >
+    <div className={classNames(classes.container, className)} ref={imageRef}>
       {!loaded && blurhash && (
         <ImagePlaceholder hash={blurhash} width="100%" height="100%" />
       )}
