@@ -7,6 +7,8 @@ import useStyles from "./GalleryStyles";
 import useFetchData from "./useFetchData";
 
 const Gallery: React.FC = () => {
+  const classes = useStyles();
+
   const {
     data,
     isFetching,
@@ -26,14 +28,16 @@ const Gallery: React.FC = () => {
     return flattenImages.map((image, i) => ({
       key: `${image.id}-${i}`,
       value: (
-        <div style={{ height: "100%" }}>
+        <div className={classes.imageContainer}>
           <Image
             src={image.urls.small}
             alt={image.alt_description || image.slug}
             blurhash={image.blur_hash}
             loading="lazy"
-            style={{ borderRadius: 4 }}
           />
+          <p className={classes.imageTitle}>
+            {image.alt_description || image.slug}
+          </p>
         </div>
       ),
       originalWidth: image.width,
@@ -41,29 +45,30 @@ const Gallery: React.FC = () => {
     }));
   }, [data]);
 
-  const classes = useStyles();
   return (
     <ErrorBoundary>
-      <h1>Gallery</h1>
-      {hasFetchingError && (
-        <ErrorFallback
-          errorMessage="Failed to load gallery. Please try again."
-          onRetry={handleRetry}
-          onClose={handleClose}
-        />
-      )}
-      {isFetching && processedImages.length === 0 ? (
-        <Loader />
-      ) : (
-        <VirtualizedMasonryGrid
-          items={processedImages}
-          gridItemClass={classes.gridItemClass}
-          infiniteScrollProps={infiniteScrollProps}
-        />
-      )}
-      {isFetchingNextPage && (
-        <Loader wrapperClassName={classes.loaderWrapper} />
-      )}
+      <div className={classes.gallery}>
+        <h1>Gallery</h1>
+        {hasFetchingError && (
+          <ErrorFallback
+            errorMessage="Failed to load gallery. Please try again."
+            onRetry={handleRetry}
+            onClose={handleClose}
+          />
+        )}
+        {isFetching && processedImages.length === 0 ? (
+          <Loader />
+        ) : (
+          <VirtualizedMasonryGrid
+            items={processedImages}
+            gridItemClass={classes.gridItemClass}
+            infiniteScrollProps={infiniteScrollProps}
+          />
+        )}
+        {isFetchingNextPage && (
+          <Loader wrapperClassName={classes.loaderWrapper} />
+        )}
+      </div>
     </ErrorBoundary>
   );
 };
