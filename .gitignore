@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables
+.env
+
+# IDE
+.vscode
+
+# Bundler cache
+.vite
+
+# Build files
+dist
