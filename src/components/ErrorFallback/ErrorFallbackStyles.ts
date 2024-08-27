@@ -6,7 +6,7 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: "var(--spacing-md, 1rem)",
     textAlign: "center",
     position: "fixed",
     inset: 0,
@@ -17,7 +17,7 @@ const useStyles = createUseStyles({
   message: {
     marginBottom: 'var(--spacing-md, 1rem)',
     color: 'var(--primary-foreground, #fff)',
-    fontWeight: 500,
+    fontWeight: "var(--font-weight-medium, 500)",
   },
   button: {
     border: "none",
@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
     right: 20,
     background: "none",
     zIndex: 2,
-    padding: '0 0.25rem'
+    padding: '0 var(--spacing-xxs, 0.25rem)', 
   },
   closeIcon: {
     width: 24,
