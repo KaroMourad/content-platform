@@ -31,7 +31,7 @@ const useStyles = createUseStyles({
         opacity: 1,
         display: "block",
       },
-      "& img": {
+      "& $image": {
         transform: "scale(1.05)",
       },
     },
@@ -40,8 +40,9 @@ const useStyles = createUseStyles({
     },
   },
   image: {
+    transition: "transform 0.2s ease-in-out",
     '& img': {
-      transition: "transform 0.2s ease-in-out",
+      objectFit: "cover",
     }
   },
   imageTitle: {

@@ -6,11 +6,12 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   blurhash?: string;
   style?: React.CSSProperties;
   imageRef?: React.Ref<HTMLDivElement>;
+  placeholder?: React.ReactNode;
 }
 
 export interface ImagePlaceholderProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  hash: string;
+  blurhash?: string;
   /** CSS height, default: 128 */
   height?: number | string | "auto";
   /** CSS width, default: 128 */
@@ -23,5 +24,7 @@ export interface ImagePlaceholderProps
 
 export interface ImageUseStylesArgs {
   loaded?: boolean;
-  style?: React.CSSProperties;
+  style?: React.CSSProperties;   
+  height?: number | string;
+  width?: number | string;
 }

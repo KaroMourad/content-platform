@@ -1,5 +1,6 @@
 // Breakpoints for different screen sizes
 export const BREAKPOINTS = [
+  { width: 1920, columns: 6 },
   { width: 1200, columns: 5 },
   { width: 1024, columns: 4 },
   { width: 768, columns: 3 },

@@ -4,8 +4,8 @@ import { PATH } from "./routes";
 import Layout from "./layouts/Layout";
 import { Loader } from "./components/ui";
 
-const Gallery = lazy(() => import("./pages/Gallery/Gallery"));
-const Photo = lazy(() => import("./pages/Photo/Photo"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const Photo = lazy(() => import("./pages/Photo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {

@@ -12,6 +12,9 @@
   /* Base Colors */
   --primary: #007bff;
   --primary-foreground: rgba(255, 255, 255, 0.87);
+  --primary-foreground-hover: rgba(255, 255, 255, 1);
+  --primary-foreground-active: rgba(255, 255, 255, 0.75);
+
   --primary-hover: #0056b3;
   --primary-active: #004085;
 
@@ -27,9 +30,11 @@
   --ring-offset-color: #242424;
 
   --input-border: #ccc;
+
   --background: #242424;
   --background-active: #e9ecef;
-  --background-opacity: rgba(36, 36, 36, 0.60); /* 60% opacity of current background color */
+  --background-opacity: rgba(36, 36, 36, 0.60);
+  --background-secondary: #343a40;
 
   --secondary: #6c757d;
   --secondary-foreground: rgba(255, 255, 255, 0.87);
@@ -77,6 +82,14 @@
   --border-radius-xl: 0.75rem;
   --border-radius-xxl: 1rem;
 
+  /* Screen Breakpoints */
+  --screen-xs: 0;
+  --screen-sm: 480px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1200px;
+  --screen-xxl: 1400px;
+  --screen-xxxl: 1920px;
 
   font-weight: var(--font-weight-normal, 400);
   font-size: var(--font-size-md, 1rem);

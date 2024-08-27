@@ -17,6 +17,7 @@ const useFetchData = () => {
     isError,
     isLoadingError,
     isFetchNextPageError,
+    isRefetchError,
   } = useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_PHOTOS, PHOTOS_PER_PAGE],
     queryFn: ({ pageParam }) => fetchPhotos(pageParam, PHOTOS_PER_PAGE),
@@ -45,8 +46,8 @@ const useFetchData = () => {
   ]);
 
   useEffect(() => {
-    setHasFetchingError(isError || isLoadingError);
-  }, [isError, isLoadingError]);
+    setHasFetchingError(isError || isLoadingError || isRefetchError);
+  }, [isError, isLoadingError, isRefetchError]);
 
   const handleRetry = useCallback(() => {
     setHasFetchingError(false);

@@ -14,6 +14,7 @@ import {
 import { computeScrollMetrics, useHandleScroll } from "../../utils";
 import { GridItemType } from "./GridItem/GridItem.types";
 import { GridItem } from "./GridItem";
+import { ErrorBoundary } from "../../components";
 
 const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
   items,
@@ -100,21 +101,23 @@ const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
   useHandleScroll(containerElRef, handleScroll);
 
   return (
-    <GridContainer containerRef={containerElRef}>
-      <Grid gridRef={gridElRef}>
-        {visibleItems.map((item) => {
-          const pos = positions[item.key];
-          return (
-            <GridItem
-              key={item.key}
-              item={item}
-              position={pos}
-              className={gridItemClass}
-            />
-          );
-        })}
-      </Grid>
-    </GridContainer>
+    <ErrorBoundary>
+      <GridContainer containerRef={containerElRef}>
+        <Grid gridRef={gridElRef}>
+          {visibleItems.map((item) => {
+            const pos = positions[item.key];
+            return (
+              <GridItem
+                key={item.key}
+                item={item}
+                position={pos}
+                className={gridItemClass}
+              />
+            );
+          })}
+        </Grid>
+      </GridContainer>
+    </ErrorBoundary>
   );
 };
 

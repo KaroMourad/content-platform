@@ -35,10 +35,9 @@ export const fetchPhotos = async (
  */
 
 export const fetchPhoto = async (
-  id: string
-): Promise<ResponseData<UnsplashPhotoData[]>> => {
-  return await API.get<UnsplashPhotoData[]>(PHOTOS, {
-    params: { id: `${id}` },
+  id?: string
+): Promise<ResponseData<UnsplashPhotoData>> => {
+  return await API.get<UnsplashPhotoData>(`${PHOTOS}/${id}`, {
     headers: UNSPLASH_API_HEADERS,
   });
 };
