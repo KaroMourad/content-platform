@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../../../services/api/constants";
 import { fetchPhoto } from "../../../services/api/Photos";
-import { useCallback, useEffect, useState } from "react";
+import { PATH } from "../../../routes";
 
 const useFetchData = (photoId: string | undefined) => {
   const [hasFetchingError, setHasFetchingError] = useState(false);
+  const navigate = useNavigate();
 
   const {
     data,
@@ -23,14 +26,15 @@ const useFetchData = (photoId: string | undefined) => {
     setHasFetchingError(isError || isRefetchError || isLoadingError);
   }, [isError, isRefetchError, isLoadingError]);
 
-  const handleRetry = useCallback(() => {
+  const handleRetry = () => {
     setHasFetchingError(false);
     refetch();
-  }, [refetch]);
+  };
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setHasFetchingError(false);
-  }, []);
+    navigate(PATH.BACK);
+  };
 
   return {
     data: data?.data,

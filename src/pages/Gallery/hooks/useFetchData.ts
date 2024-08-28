@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 
@@ -49,14 +49,14 @@ const useFetchData = () => {
     setHasFetchingError(isError || isLoadingError || isRefetchError);
   }, [isError, isLoadingError, isRefetchError]);
 
-  const handleRetry = useCallback(() => {
+  const handleRetry = () => {
     setHasFetchingError(false);
     fetchNextPage();
-  }, [fetchNextPage]);
+  };
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setHasFetchingError(false);
-  }, []);
+  };
 
   return {
     isFetching,
