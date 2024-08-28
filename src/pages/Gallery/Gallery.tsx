@@ -1,12 +1,11 @@
 import { useMemo } from "react";
 import { VirtualizedMasonryGrid } from "../../sections/MasonryGrid";
-import { Image, Loader } from "../../components/ui";
-import { UnsplashPhotoData } from "../../services/api/Photos/Photos.types";
+import { Loader } from "../../components/ui";
 import { ErrorBoundary, ErrorFallback } from "../../components";
 import useStyles from "./Gallery.styles";
 import useFetchData from "./hooks/useFetchData";
-import { Link } from "react-router-dom";
-import { PATH } from "../../routes";
+import { GridItemType } from "../../sections/MasonryGrid/GridItem/GridItem.types";
+import GalleryPhoto from "./GalleryPhoto/GalleryPhoto";
 
 const Gallery: React.FC = () => {
   const classes = useStyles();
@@ -21,34 +20,16 @@ const Gallery: React.FC = () => {
     handleClose,
   } = useFetchData();
 
-  const processedData = useMemo(() => {
-    const flattenData = data.pages.reduce(
-      (acc, page) => [...acc, ...page.data],
-      [] as UnsplashPhotoData[]
-    );
-
-    return flattenData.map((photo, i) => ({
-      key: `${photo.id}-${i}`,
-      value: (
-        <Link to={`${PATH.GALLERY.ROOT}/${photo.id}`}>
-          <div className={classes.imageContainer}>
-            <Image
-              src={photo.urls.small}
-              alt={photo.alt_description || photo.slug}
-              blurhash={photo.blur_hash}
-              className={classes.image}
-              loading="lazy"
-            />
-            <p className={classes.imageTitle}>
-              {photo.alt_description || photo.slug}
-            </p>
-          </div>
-        </Link>
-      ),
-      originalWidth: photo.width,
-      originalHeight: photo.height,
-    }));
-  }, [data]);
+  const processedData: GridItemType[] = useMemo(
+    () =>
+      data.map((photo, i) => ({
+        key: `${photo.id}-${i}`,
+        value: <GalleryPhoto photo={photo} />,
+        originalWidth: photo.width,
+        originalHeight: photo.height,
+      })),
+    [data]
+  );
 
   return (
     <ErrorBoundary>

@@ -29,14 +29,12 @@ const VirtualizedMasonryGrid: React.FC<VirtualizedMasonryGridProps> = ({
 
   const [visibleItems, setVisibleItems] = useState<GridItemType[]>([]);
 
-  // Use custom hook for column settings
   const { columnWidth, columnCount } = useColumnSettings(
     containerElRef,
     gap,
     breakpoints
   );
 
-  // Use custom hook for item positions
   const positions = useCalculatePositions(
     containerElRef,
     gridElRef,

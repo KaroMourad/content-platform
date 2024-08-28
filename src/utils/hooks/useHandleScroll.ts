@@ -5,7 +5,7 @@ import { throttle } from "lodash-es";
 /**
  * Custom hook to handle scroll events on a specified container.
  * @param containerRef - The ref of the container element.
- * @param callback - Function to be called on scroll. 
+ * @param callback - Function to be called on scroll.
  * @param delay - Debounce delay in milliseconds.
  */
 const useHandleScroll = (
@@ -24,11 +24,10 @@ const useHandleScroll = (
     };
 
     const throttledHandleScroll = throttle(handleScroll, delay);
-
     container.addEventListener("scroll", throttledHandleScroll);
-
     return () => {
       container.removeEventListener("scroll", throttledHandleScroll);
+      throttledHandleScroll.cancel();
     };
   }, [containerRef, delay, callback]);
 };

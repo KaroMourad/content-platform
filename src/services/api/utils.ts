@@ -9,12 +9,13 @@ export async function handleResponse<TData = unknown>(
   if (response.ok) {
     const totalItems = parseInt(response.headers.get("X-Total") || "0", 10);
     const perPage = parseInt(response.headers.get("X-Per-Page") || "0", 10);
-    const lastPageNumber = perPage > 0 ? Math.ceil(totalItems / perPage) : undefined;
+    const lastPageNumber =
+      perPage > 0 ? Math.ceil(totalItems / perPage) : undefined;
     return {
       data,
       totalItems,
       perPage,
-      lastPageNumber
+      lastPageNumber,
     };
   }
   const errorMessage = await response.text();
@@ -22,12 +23,10 @@ export async function handleResponse<TData = unknown>(
 }
 
 export function getRequestHeaders(customHeaders = {}): Record<string, string> {
-  let headers: Record<string, string> = {
+  return {
     "Content-Type": "application/json",
     ...customHeaders,
   };
-
-  return headers;
 }
 
 export function getApiRoot() {

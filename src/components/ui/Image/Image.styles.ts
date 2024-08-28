@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
     willChange: "opacity",
     maxWidth: "100%",
     height: "100%",
-    opacity: loaded ? 1 : 0.5,
+    opacity: loaded ? 1 : 0.7,
     width: loaded ? "100%" : "0",
     visibility: loaded ? "visible" : "hidden",
   }),

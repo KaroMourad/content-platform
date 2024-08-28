@@ -8,6 +8,7 @@ export const BREAKPOINTS = [
   { width: 0, columns: 1 },
 ];
 
+// Gap between columns and rows in pixels
 export const GAP = 16;
 
 // Percentage of the viewport height to use as a buffer for pre-loading items

@@ -1,52 +1,46 @@
 import { useState, useCallback, useEffect } from "react";
-import { throttle } from "lodash-es";
 import { GridItemType, Position } from "../GridItem/GridItem.types";
+import { computeGridPositions, useWindowResize } from "../../../utils";
 
+/**
+ * Custom hook to calculate the positions of grid items in a masonry grid layout.
+ * @param containerRef - Reference to the container element.
+ * @param gridRef - Reference to the grid element.
+ * @param items - Array of grid items.
+ * @param columnWidth - The width of each column.
+ * @param columnCount - The number of columns.
+ * @param gap - The gap between columns.
+ * @param delay - Throttle delay in milliseconds.
+ */
 const useCalculatePositions = (
   containerRef: React.RefObject<HTMLDivElement>,
   gridRef: React.RefObject<HTMLDivElement>,
   items: GridItemType[],
   columnWidth: number,
   columnCount: number,
-  gap: number
+  gap: number,
+  delay: number = 50
 ) => {
   const [positions, setPositions] = useState<Record<string, Position>>({});
 
-  const calculatePositions = useCallback(() => {
+  const updatePositions = useCallback(() => {
     if (!containerRef.current || !gridRef.current || !columnWidth) return;
-    const columnHeights = new Array(columnCount).fill(0);
-    const newPositions: Record<string, Position> = {};
-
-    for (let item of items) {
-      const aspectRatio = item.originalWidth / item.originalHeight;
-      const height = Number((columnWidth / aspectRatio).toFixed(2));
-      const minColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-      const x = Number((minColumnIndex * (columnWidth + gap)).toFixed(2));
-      const y = Number(columnHeights[minColumnIndex].toFixed(2));
-      columnHeights[minColumnIndex] += height + gap;
-
-      newPositions[item.key] = {
-        x,
-        y,
-        width: columnWidth,
-        height: height,
-      };
-    }
+    const { positions: newPositions, maxHeight } = computeGridPositions(
+      items,
+      columnWidth,
+      columnCount,
+      gap
+    );
 
     setPositions(newPositions);
-    gridRef.current.style.height = `${Math.max(...columnHeights)}px`;
-  }, [items, columnWidth, gap, containerRef, gridRef]);
+    gridRef.current.style.height = `${maxHeight}px`;
+  }, [items, columnWidth, columnCount, gap, containerRef, gridRef]);
 
   useEffect(() => {
-    const throttledCalPositions = throttle(calculatePositions, 30);
+    updatePositions();
+  }, [updatePositions]);
 
-    throttledCalPositions();
-    window.addEventListener("resize", throttledCalPositions);
-
-    return () => {
-      window.removeEventListener("resize", throttledCalPositions);
-    };
-  }, [calculatePositions]);
+  useWindowResize(updatePositions, delay);
 
   return positions;
 };

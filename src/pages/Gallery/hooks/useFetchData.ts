@@ -5,6 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchPhotos } from "../../../services/api/Photos";
 import { QUERY_KEYS } from "../../../services/api/constants";
 import { PHOTOS_PER_PAGE } from "../config";
+import { UnsplashPhotoData } from "../../../services/api/Photos/Photos.types";
 
 const useFetchData = () => {
   const [hasFetchingError, setHasFetchingError] = useState(false);
@@ -31,6 +32,15 @@ const useFetchData = () => {
       return hasMore ? currentPage + 1 : undefined;
     },
   });
+
+  const flattenData = useMemo(
+    () =>
+      data.pages.reduce(
+        (acc, page) => [...acc, ...page.data],
+        [] as UnsplashPhotoData[]
+      ),
+    [data]
+  );
 
   const infiniteScrollProps = useMemo(() => {
     return {
@@ -61,7 +71,7 @@ const useFetchData = () => {
   return {
     isFetching,
     isFetchingNextPage,
-    data,
+    data: flattenData,
     fetchNextPage,
     infiniteScrollProps,
     hasFetchingError,

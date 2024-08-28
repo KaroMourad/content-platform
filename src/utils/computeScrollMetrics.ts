@@ -1,16 +1,12 @@
+import { RefObject } from "react";
+
 /**
- * Computes scroll metrics for a given HTMLDivElement reference.
- *
- * @param {React.RefObject<HTMLDivElement>} ref - A React ref object pointing to an HTMLDivElement.
- * @param {number} buffer - The buffer size as a percentage of the client height.
- * @returns {Object} An object containing:
- *   - scrollTop {number}: Vertical scroll position in pixels.
- *   - clientHeight {number}: Height of the element's content area in pixels.
- *   - bufferHeight {number}: Height of the buffer zone in pixels.
- *   - scrollHeight {number}: Total height of the element's content.
+ * Compute scroll metrics for a given container element.
+ * @param ref - The ref of the container element.
+ * @param buffer - The buffer percentage for the scroll height.
  */
 const computeScrollMetrics = (
-  ref: React.RefObject<HTMLDivElement>,
+  ref: RefObject<HTMLDivElement>,
   buffer: number
 ) => {
   if (!ref.current)

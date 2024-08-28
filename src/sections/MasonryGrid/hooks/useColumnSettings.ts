@@ -3,6 +3,13 @@ import { throttle } from "lodash-es";
 
 import { GridBreakpoint } from "../VirtualizedMasonryGrid.types";
 
+/**
+ * Custom hook to calculate column settings based on container width and breakpoints.
+ * @param containerRef - The ref of the container element.
+ * @param gap - The gap between columns.
+ * @param breakpoints - Array of grid breakpoints for column settings.
+ * @param delay - Debounce delay in milliseconds.
+ */
 const useColumnSettings = (
   containerRef: React.RefObject<HTMLDivElement>,
   gap: number,
@@ -31,9 +38,7 @@ const useColumnSettings = (
   useEffect(() => {
     calculateColumns();
     const throttledCalculateColumns = throttle(calculateColumns, delay);
-
     window.addEventListener("resize", throttledCalculateColumns);
-
     return () => {
       window.removeEventListener("resize", throttledCalculateColumns);
     };
