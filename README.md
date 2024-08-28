@@ -8,7 +8,7 @@ This project is a Single Page Application (SPA) built with React, Vite, and Type
 
 ### Virtualized Masonry Grid Layout
 
-![Screenshot of the Masonry Grid](/masonry-grid.png)
+![Screenshot of the Masonry Grid](public/masonry-grid.png)
 
 - **Responsive Design**: The grid layout adjusts dynamically based on the screen size, ensuring an optimal viewing experience on all devices.
 - **Virtualization**: To efficiently handle large sets of images, the grid is virtualized, rendering only the photos visible in the viewport. This approach significantly improves performance by reducing the number of DOM nodes.
