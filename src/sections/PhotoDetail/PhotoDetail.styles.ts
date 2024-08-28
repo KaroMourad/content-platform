@@ -18,18 +18,28 @@ const useStyles = createUseStyles({
     alignItems: "center",
     justifyContent: "center",
     padding: "var(--spacing-lg, 1.5rem)",
+    overflow: "hidden",
     "@media (max-width: 1024px)": {
-      height: "76%",
+      flex: 1,
     },
   },
-  image: {
-    width: "450px",
-    height: "auto",
+  image: ({ ratio }: { ratio: number }) => ({
+    width: 700 * ratio,
+    height: 700,
+    overflow: "hidden",
     borderRadius: "var(--border-radius-xs, 0.25rem)",
     "& img": {
       objectFit: "contain",
     },
-  },
+    "@media (max-width: 768px)": {
+      width: 480 * ratio,
+      height: 480,
+    },
+    "@media (max-width: 1024px)": {
+      width: 540 * ratio,
+      height: 540,
+    },
+  }),
   photoDetail: {
     minWidth: "min(280px, 100%)",
     width: "320px",
@@ -42,8 +52,8 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     "@media (max-width: 1024px)": {
       width: "100%",
-      height: "100%",
       alignItems: "center",
+      textAlign: 'center'
     },
   },
   photoTitle: {

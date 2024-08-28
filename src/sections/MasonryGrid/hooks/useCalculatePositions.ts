@@ -18,9 +18,8 @@ const useCalculatePositions = (
     const newPositions: Record<string, Position> = {};
 
     for (let item of items) {
-      const height = Number(
-        (columnWidth / (item.originalWidth / item.originalHeight)).toFixed(2)
-      );
+      const aspectRatio = item.originalWidth / item.originalHeight;
+      const height = Number((columnWidth / aspectRatio).toFixed(2));
       const minColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
       const x = Number((minColumnIndex * (columnWidth + gap)).toFixed(2));
       const y = Number(columnHeights[minColumnIndex].toFixed(2));

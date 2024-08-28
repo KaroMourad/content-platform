@@ -23,10 +23,7 @@ const Image: React.FC<ImageProps> = (props) => {
   const classes = useStyles({ loaded, style, width, height });
   return (
     <div className={classNames(classes.container, className)} ref={imageRef}>
-      {!loaded &&
-        (placeholder || (
-          <ImagePlaceholder blurhash={blurhash} width="100%" height="100%" />
-        ))}
+      {!loaded && (placeholder || <ImagePlaceholder blurhash={blurhash} />)}
       <img
         src={src}
         alt={alt}

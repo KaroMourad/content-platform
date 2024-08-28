@@ -11,7 +11,7 @@ import { throttle } from "lodash-es";
 const useHandleScroll = (
   containerRef: RefObject<HTMLElement>,
   callback: (scrollTop: number, scrollLeft: number) => void,
-  delay: number = 20
+  delay: number = 50
 ) => {
   useEffect(() => {
     if (!containerRef.current) return;

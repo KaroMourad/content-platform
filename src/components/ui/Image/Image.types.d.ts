@@ -12,9 +12,7 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 export interface ImagePlaceholderProps
   extends React.HTMLAttributes<HTMLDivElement> {
   blurhash?: string;
-  /** CSS height, default: 128 */
   height?: number | string | "auto";
-  /** CSS width, default: 128 */
   width?: number | string | "auto";
   punch?: number;
   resolutionX?: number;

@@ -6,8 +6,9 @@ import useStyles from "./PhotoDetail.styles";
 import AvatarPlaceholder from "../../assets/icons/avatar-placeholder.svg?react";
 import Clock from "../../assets/icons/clock.svg?react";
 
-const PhotoDetail: React.FC<PhotoDetailProps> = ({ data }) => {
-  const classes = useStyles();
+const PhotoDetail: React.FC<PhotoDetailProps> = ({ data }) => {  
+  const classes = useStyles({ ratio: data.width / data.height });
+
   return (
     <ErrorBoundary>
       <div className={classes.photoDetailContainer}>
@@ -18,7 +19,6 @@ const PhotoDetail: React.FC<PhotoDetailProps> = ({ data }) => {
             blurhash={data.blur_hash}
             className={classes.image}
             loading="lazy"
-            style={{ aspectRatio: data.width / data.height }}
           />
         </div>
         <div className={classes.photoDetail}>

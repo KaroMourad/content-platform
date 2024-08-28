@@ -1,10 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
+import { throttle } from "lodash-es";
+
 import { GridBreakpoint } from "../VirtualizedMasonryGrid.types";
 
 const useColumnSettings = (
   containerRef: React.RefObject<HTMLDivElement>,
   gap: number,
-  breakpoints: GridBreakpoint[]
+  breakpoints: GridBreakpoint[],
+  delay: number = 50
 ) => {
   const [columnWidth, setColumnWidth] = useState<number>(0);
   const [columnCount, setColumnCount] = useState<number>(0);
@@ -27,12 +30,14 @@ const useColumnSettings = (
 
   useEffect(() => {
     calculateColumns();
-    window.addEventListener("resize", calculateColumns);
+    const throttledCalculateColumns = throttle(calculateColumns, delay);
+
+    window.addEventListener("resize", throttledCalculateColumns);
 
     return () => {
-      window.removeEventListener("resize", calculateColumns);
+      window.removeEventListener("resize", throttledCalculateColumns);
     };
-  }, [calculateColumns]);
+  }, [calculateColumns, delay]);
 
   return { columnWidth, columnCount };
 };
