@@ -53,7 +53,7 @@ This project is a Single Page Application (SPA) built with React, Vite, and Type
 
 1. **Clone the repository**:
    ```bash
-   git clone [https://github.com/yourusername/content-platform.git](https://github.com/KaroMourad/content-platform.git)
+   git clone https://github.com/KaroMourad/content-platform.git
    ```
    
 2. **Navigate to the project directory**:
