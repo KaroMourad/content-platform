@@ -17,6 +17,8 @@ This project is a Single Page Application (SPA) built with React, Vite, and Type
 
 ### Photo Details View
 
+![Screenshot of Photo Detail View](public/photo-view.png)
+
 - **Detailed Photo Information**: When a photo is selected, a detailed view is displayed showing the photo in a larger size along with the title, description, photographer's name, and date taken.
 - **Navigation**: A back button is provided to easily return to the masonry grid view.
 
