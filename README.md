@@ -91,6 +91,15 @@ VITE_API_CLIENT_ID=your_unsplash_access_key
 VITE_PORT=3000
 ```
 
+### Unsplash API Restrictions and Limits
+
+Please note that the Unsplash API has certain restrictions and limits:
+
+- **Rate Limits**: Unsplash imposes rate limits on API requests to ensure fair use and system stability. For the free tier, the limit is typically 50 requests per hour. Exceeding this limit may result in temporary suspension of API access.
+- **Photo Limits**: There are restrictions on the number of photos that can be fetched in a single request and the number of requests that can be made per day.
+- **Attribution**: Unsplash requires that you provide proper attribution for the photos used from their API. Make sure to follow their [API guidelines](https://unsplash.com/developers) to comply with their terms of use.
+
+Be aware of these limits to avoid disruptions in accessing the photo data and ensure compliance with Unsplash’s terms of service.
 
 ## Running the Application
 

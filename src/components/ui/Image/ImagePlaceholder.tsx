@@ -5,7 +5,7 @@ import PlaceholderImg from "../../../assets/image-placeholder.svg?react";
 import { ImagePlaceholderProps } from "./Image.types";
 
 const ImagePlaceholder: React.FC<ImagePlaceholderProps> = (props) => {
-  const { blurhash, width = "100%", height = "auto", ...restProps } = props;
+  const { blurhash, width = "100%", height = "100%", ...restProps } = props;
   return blurhash ? (
     <Blurhash hash={blurhash} width={width} height={height} {...restProps} />
   ) : (
