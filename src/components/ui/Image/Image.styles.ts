@@ -12,8 +12,11 @@ const useStyles = createUseStyles({
     ...style,
   }),
   image: ({ loaded }: ImageUseStylesArgs) => ({
+    transition: "opacity 0.2s ease-in-out",
+    willChange: "opacity",
     maxWidth: "100%",
     height: "100%",
+    opacity: loaded ? 1 : 0.5,
     width: loaded ? "100%" : "0",
     visibility: loaded ? "visible" : "hidden",
   }),
