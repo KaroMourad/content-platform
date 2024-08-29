@@ -17,8 +17,9 @@ const useFetchData = (photoId: string | undefined) => {
     refetch,
     isRefetchError,
     isLoadingError,
+    error,
   } = useQuery({
-    queryKey: [QUERY_KEYS.GET_PHOTO, photoId],
+    queryKey: [QUERY_KEYS.PHOTOS.GET_PHOTO, photoId],
     queryFn: async () => fetchPhoto(photoId),
   });
 
@@ -44,6 +45,7 @@ const useFetchData = (photoId: string | undefined) => {
     hasFetchingError,
     handleClose,
     handleRetry,
+    error,
   };
 };
 

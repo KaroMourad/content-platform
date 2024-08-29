@@ -6,6 +6,7 @@ import useStyles from "./Gallery.styles";
 import useFetchData from "./hooks/useFetchData";
 import { GridItemType } from "../../sections/MasonryGrid/GridItem/GridItem.types";
 import GalleryPhoto from "./GalleryPhoto/GalleryPhoto";
+import { ERROR_FAILED_TO_LOAD_PHOTOS } from "../../services/api/Photos/error-messages";
 
 const Gallery: React.FC = () => {
   const classes = useStyles();
@@ -18,6 +19,7 @@ const Gallery: React.FC = () => {
     infiniteScrollProps,
     handleRetry,
     handleClose,
+    error,
   } = useFetchData();
 
   const processedData: GridItemType[] = useMemo(
@@ -37,7 +39,7 @@ const Gallery: React.FC = () => {
         <h1>Gallery</h1>
         {hasFetchingError && (
           <ErrorFallback
-            errorMessage="Failed to load gallery. Please try again."
+            errorMessage={error?.message || ERROR_FAILED_TO_LOAD_PHOTOS}
             onRetry={handleRetry}
             onClose={handleClose}
           />

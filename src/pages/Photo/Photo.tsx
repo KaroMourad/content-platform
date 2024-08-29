@@ -8,6 +8,7 @@ import useFetchData from "./hooks/useFetchData";
 
 import ArrowBack from "../../assets/icons/arrow-back.svg?react";
 import { PhotoDetail } from "../../sections/PhotoDetail";
+import { ERROR_FAILED_TO_LOAD_PHOTO } from "../../services/api/Photos/error-messages";
 
 const Photo: React.FC = () => {
   const { photoId } = useParams();
@@ -19,6 +20,7 @@ const Photo: React.FC = () => {
     handleRetry,
     handleClose,
     hasFetchingError,
+    error,
   } = useFetchData(photoId);
 
   return (
@@ -30,7 +32,7 @@ const Photo: React.FC = () => {
         </Link>
         {hasFetchingError && (
           <ErrorFallback
-            errorMessage="Failed to fetch photo"
+            errorMessage={error?.message || ERROR_FAILED_TO_LOAD_PHOTO}
             onRetry={handleRetry}
             onClose={handleClose}
           />

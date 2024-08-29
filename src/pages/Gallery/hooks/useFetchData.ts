@@ -19,8 +19,9 @@ const useFetchData = () => {
     isLoadingError,
     isFetchNextPageError,
     isRefetchError,
+    error,
   } = useInfiniteQuery({
-    queryKey: [QUERY_KEYS.GET_PHOTOS, PHOTOS_PER_PAGE],
+    queryKey: [QUERY_KEYS.PHOTOS.GET_PHOTOS, PHOTOS_PER_PAGE],
     queryFn: ({ pageParam }) => fetchPhotos(pageParam, PHOTOS_PER_PAGE),
     initialPageParam: 1,
     initialData: { pages: [], pageParams: [] },
@@ -77,6 +78,7 @@ const useFetchData = () => {
     hasFetchingError,
     handleRetry,
     handleClose,
+    error,
   };
 };
 

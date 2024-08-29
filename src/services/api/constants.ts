@@ -13,7 +13,9 @@ export const METHODS_WITH_BODY = new Set<`${API_METHODS}`>([
 ]);
 
 export const QUERY_KEYS = {
-  GET_PHOTOS: "GET_PHOTOS",
-  GET_PHOTO: "GET_PHOTO",
-  SEARCH_PHOTOS: "SEARCH_PHOTOS",
+  PHOTOS: {
+    GET_PHOTO: "GET_PHOTO",
+    GET_PHOTOS: "GET_PHOTOS",
+    SEARCH_PHOTOS: "SEARCH_PHOTOS",
+  },
 };
