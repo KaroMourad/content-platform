@@ -44,7 +44,7 @@ This project is a Single Page Application (SPA) built with React, Vite, and Type
 
 ### Extras
 
-- **CSS-in-JS**: Styled-components and `react-jss` are used for styling, ensuring a modular and maintainable CSS structure.
+- **CSS-in-JS**: `react-jss` is used for styling, ensuring a modular and maintainable CSS structure.
 - **Responsiveness**: The application is fully responsive, providing an optimal viewing experience across different devices.
 - **Search Functionality (Bonus)**: A search feature allows users to search for photos by keywords, dynamically updating the masonry grid with relevant results from the Unsplash API.
 
