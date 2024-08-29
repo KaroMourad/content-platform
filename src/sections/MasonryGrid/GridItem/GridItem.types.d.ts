@@ -5,7 +5,7 @@ export interface GridItemProps {
 }
 
 export interface GridItemType {
-  value: React.ReactNode;
+  value?: React.ReactNode;
   key: string;
   originalWidth: number;
   originalHeight: number;

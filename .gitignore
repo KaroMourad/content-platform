@@ -31,6 +31,7 @@ dist-ssr
 
 # Bundler cache
 .vite
+coverage
 
 # Build files
 dist
